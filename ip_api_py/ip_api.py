@@ -19,8 +19,13 @@ class IPInfoApi(object):
     doc: https://ip-api.com/docs/api:json
     """
 
-    def __init__(self, fields: List[IpFieldType], lang: str = "en", timeout_seconds: int = 30,
-                 wait_seconds: Optional[int] = None):
+    def __init__(
+        self,
+        fields: List[IpFieldType],
+        lang: str = "en",
+        timeout_seconds: int = 30,
+        wait_seconds: Optional[int] = None,
+    ):
         """
         :param fields: 需要查询的字段
         :param lang: 默认的语言
@@ -68,7 +73,9 @@ class IPInfoApi(object):
         :return:
         """
         try:
-            ip_a: Union[ipaddress.IPv4Address, ipaddress.IPv6Address] = ipaddress.ip_address(ip)
+            ip_a: Union[
+                ipaddress.IPv4Address, ipaddress.IPv6Address
+            ] = ipaddress.ip_address(ip)
             if ip_a.is_private:  # private address is ignored (MUST BE NO ANSWER)
                 return False
             else:
