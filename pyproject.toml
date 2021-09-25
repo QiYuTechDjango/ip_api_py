@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ip_api_py"
-version = "0.1.0"
+version = "0.1.1"
 description = "unoffical https://ip-api.com/ python API"
 authors = ["dev <dev@qiyutech.tech>"]
 license = "AGPL"

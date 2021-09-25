@@ -41,12 +41,18 @@ class IPInfoApi(object):
         if not self._check_valid_ip(ip):
             return None
 
+        counter = 0
         while True:
             rate_limit, info = self._try_get_ip_info(ip)
             if info is not None:
                 return info
             if self._wait_seconds is not None and rate_limit:
                 time.sleep(self._wait_seconds)
+                counter += 1
+                if counter * self._wait_seconds > 60:
+                    # we have wait for 1 minutes,
+                    # return None to prevent infinite wait
+                    return None
 
     def _try_get_ip_info(self, ip: str) -> Tuple[bool, Optional[IPInfoDt]]:
         rate_limit = False
