@@ -3,6 +3,7 @@ from typing import Optional, Literal
 from pydantic import BaseModel, Field
 
 IpFieldType = Literal[
+    "query",
     "status",
     "continent",
     "country",
@@ -18,8 +19,8 @@ IpFieldType = Literal[
 
 
 class IPInfoDt(BaseModel):
-    query: str = Field(..., title="IP地址", description="查询的IP地址")
-    status: str = Field(..., title="状态")
+    query: Optional[str] = Field(None, title="IP地址", description="查询的IP地址")
+    status: Optional[str] = Field(None, title="状态")
     continent: Optional[str] = Field(None, title="大洋")
     country: Optional[str] = Field(None, title="国家")
     countryCode: Optional[str] = Field(None, title="国家代码")
